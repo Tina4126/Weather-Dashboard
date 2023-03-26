@@ -1,5 +1,6 @@
-// // Declaration of global variables
+// Declaration of global variables
 let cityName = '';
+const apiKey = '6d15a98c4f1e6bf4dce53c48165b4e99';
 
 // Function to build the URL for the geocoding API
 function buildGeoURL(cityName) {
@@ -9,6 +10,26 @@ function buildGeoURL(cityName) {
     geocodingURL += $.param(geocodingParams);
     return geocodingURL;
 }
+function buildGeoURL(cityName) {
+    const geocodingParams = { q: cityName, appid: apiKey };
+    const geocodingURL = `https://api.openweathermap.org/geo/1.0/direct?${$.param(geocodingParams)}`;
+    return geocodingURL;
+  }
+  
+
+
+// Function to get geocoding data for a city
+async function getGeoData(cityName) {
+    try {
+      const geoURL = buildGeoURL(cityName);
+      const response = await $.ajax({ url: geoURL, method: 'GET' });
+      return response;
+    } catch (error) {
+      console.error('Error fetching geocoding data:', error);
+      alert('Sorry, an error occurred while fetching geocoding data. Please try again later.');
+    }
+  }
+
 // Function to get current weather and display it on the webpage
 function getCurrentWeather(geoData) {
     // Build the queryURL based on the lon and lat data 
@@ -48,6 +69,44 @@ function getCurrentWeather(geoData) {
         $('#today').addClass('border border-dark p-1');
     })
 }
+
+
+// Function to get current weather for a city
+async function getCurrentWeather(geoData) {
+    try {
+      const queryParams = { lat: geoData[0].lat, lon: geoData[0].lon, appid: apiKey, units: 'metric' };
+      const queryURL = `https://api.openweathermap.org/data/2.5/weather?${$.param(queryParams)}`;
+      const response = await $.ajax({ url: queryURL, method: 'GET' });
+  
+      // Extract weather data from the response
+      const currentDate = moment().format('DD/MM/YYYY');
+      const tempData = response.main.temp.toFixed(2);
+      const windData = response.wind.speed.toFixed(1);
+      const humidityData = response.main.humidity;
+      const weatherIconId = response.weather[0].icon;
+      const iconURL = `https://openweathermap.org/img/wn/${weatherIconId}@2x.png`;
+  
+      // Create elements to display weather data
+      const todayTitle = $('<h2>').text(`${geoData[0].name} (${currentDate})`);
+      const iconEl = $('<img>').attr('src', iconURL);
+      const todayTemp = $('<p>').text(`Temp: ${tempData}℃`);
+      const todayWind = $('<p>').text(`Wind: ${windData} KPH`);
+      const todayHumidity = $('<p>').text(`Humidity: ${humidityData}%`);
+  
+      // Append elements to the webpage
+      $('#today').empty();
+      todayTitle.append(iconEl);
+      $('#today').append(todayTitle, todayTemp, todayWind, todayHumidity);
+      $('#today').addClass('border border-dark p-1');
+    } catch (error) {
+      console.error('Error fetching current weather data:', error);
+      alert('Sorry, an error occurred while fetching current weather data. Please try again later.');
+    }
+  }
+  
+  
+  
+  
 
 // Function to get weather forecast for a city and display on the webpage
 function getForecastWeather(geoData) {
