@@ -1,0 +1,23 @@
+
+.weather-header {
+    background: rgb(150, 161, 249);
+        background: linear-gradient(90deg, rgba(150, 161, 249, 1) 0%, rgba(6, 45, 182, 1) 100%);
+}
+
+#search-button {
+    border-radius: 5px;
+    border: none;
+}
+
+#search-button:hover {
+    background-color: rgb(14, 100, 204);
+    border: none;
+    color: rgb(149, 230, 19);
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
