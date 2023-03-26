@@ -1,7 +1,11 @@
-var APIKey = "a0b3eed94c9619ad95239c7e8f44cc29";
+// // Declaration of global variables
+let cityName = '';
 
-var city;
-
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}";
-
-fetch(queryURL)
+// Function to build the URL for the geocoding API
+function buildGeoURL(cityName) {
+    let geocodingURL = 'https://api.openweathermap.org/geo/1.0/direct?';
+    let geocodingParams = {'appid': '6d15a98c4f1e6bf4dce53c48165b4e99'};
+    geocodingParams.q = cityName;
+    geocodingURL += $.param(geocodingParams);
+    return geocodingURL;
+}
