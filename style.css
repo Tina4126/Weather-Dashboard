@@ -1,8 +1,9 @@
-/* 
+
 .weather-header {
-    background: rgb(150, 161, 249);
-        background: linear-gradient(90deg, rgba(150, 161, 249, 1) 0%, rgba(6, 45, 182, 1) 100%);
+    background: rgb(71, 136, 36);
+        background: linear-gradient(90deg, rgb(88, 133, 21) 0%, rgba(6, 45, 182, 1) 100%);
 }
+
 
 #search-button {
     border-radius: 5px;
@@ -10,7 +11,7 @@
 }
 
 #search-button:hover {
-    background-color: rgb(14, 100, 204);
+    background-color: rgb(35, 101, 19);
     border: none;
     color: rgb(149, 230, 19);
 }
@@ -21,100 +22,3 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-
-.city-buttons:hover {
-    background: rgb(150, 161, 249);
-        background: linear-gradient(90deg, rgba(150, 161, 249, 1) 0%, rgba(6, 45, 182, 1) 100%);
-} */
-
-
-/* Set a weather-themed background */
-
-
-body {
-background-image: url('weather-bg.jpg');
-background-size: cover;
-font-family: Arial, sans-serif;
-}
-
-/* Style the header */
-.weather-header {
-background-color: rgba(66, 135, 99, 0.8);
-padding: 10px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Add icons to the weather conditions */
-.weather-condition {
-font-size: 2rem;
-font-weight: bold;
-}
-
-.weather-condition i {
-display: inline-block;
-width: 60px;
-text-align: center;
-font-size: 1.5rem;
-}
-
-.weather-temperature {
-font-size: 3rem;
-font-weight: bold;
-color: #3CB371;
-}
-
-.weather-description {
-font-size: 1.5rem;
-font-weight: bold;
-color: #98FB98; /* Use blue for clear skies */
-}
-
-.weather-location {
-font-size: 1.2rem;
-color: #696969; /* Use gray for text that is not as important */
-}
-
-
-#search-button {
-background-color: #3CB371; 
-border-radius: 5px;
-border: none;
-color: #FFF;
-padding: 10px;
-font-size: 1.2rem;
-font-weight: bold;
-cursor: pointer;
-}
-
-#search-button:hover {
-background-color: #2E8B57; /* Use blue on hover for contrast */
-}
-
-hr {
-margin-top: 2rem;
-margin-bottom: 2rem;
-border: none;
-border-top: 2px solid #3CB371; 
-}
-
-.city-buttons {
-display: inline-block;
-background-color: #3CB371; 
-border-radius: 5px;
-border: none;
-color: #FFF;
-padding: 5px 10px;
-font-size: 1.2rem;
-font-weight: bold;
-margin-right: 10px;
-margin-bottom: 10px;
-cursor: pointer;
-}
-
-.city-buttons:hover {
-background-color: #2E8B57 /* Use blue on hover for contrast */
-}
-
-
