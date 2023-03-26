@@ -5,3 +5,4 @@ This webpage allows users to retrieve weather data for cities. The user can inpu
 This webpage uses HTML, CSS, JavaScript and a weather API.
 
 https://tina4126.github.io/Weather-Dashboard/ 
+image.png
