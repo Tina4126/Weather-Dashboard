@@ -160,3 +160,47 @@ function getForecastWeather(geoData) {
         }
     })
 }
+
+// function to record the search history
+function recordSearch(geoData) {
+    // console.log('This is the function to record the search history.');
+    let cityArr = JSON.parse(localStorage.getItem('cityHistory'));
+    if (cityArr === null) {
+        cityArr = [];
+        cityArr.unshift(geoData[0].name);
+        localStorage.setItem('cityHistory', JSON.stringify(cityArr));
+        // console.log('No search history.');
+        const historyEl = $('<button>').text(geoData[0].name);
+        historyEl.attr({type: 'button', class: 'btn btn-secondary btn-lg btn-block'});
+        $('#history').prepend(historyEl);
+        
+    } else if (cityArr.includes(geoData[0].name)) {
+        // console.log(('This city is in the search history'));
+    } else {
+        // console.log(('This is a new city'));
+        cityArr.unshift(geoData[0].name);
+        localStorage.setItem('cityHistory', JSON.stringify(cityArr));
+        const historyEl = $('<button>').text(geoData[0].name);
+        historyEl.attr({type: 'button', class: 'btn btn-secondary btn-lg btn-block'});
+        $('#history').prepend(historyEl);
+    }
+}
+
+// function to reset the start page
+function resetPage() {
+    // console.log('This is the reset page function');
+    // empty the current and forecast weather info
+    $('#today').empty();
+    $('#forecast').empty();
+
+    let cityArr = JSON.parse(localStorage.getItem('cityHistory'));
+    // console.log(cityArr);
+    if (cityArr != null) {
+        // console.log('City array is not empty');
+        cityArr.forEach(cityName => {
+            const historyEl = $('<button>').text(cityName);
+            historyEl.attr({type: 'button', class: 'btn btn-secondary btn-lg btn-block'});
+            $('#history').prepend(historyEl);
+        })
+    }
+}
