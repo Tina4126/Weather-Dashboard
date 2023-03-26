@@ -204,3 +204,51 @@ function resetPage() {
         })
     }
 }
+
+
+$(document).ready( function(){
+    // When the page is loaded, remove the weather information, and display the previous search results.
+    resetPage();
+
+    // Add event listener to the search button
+    $('#search-button').on('click', function(event){
+        // Prevent the refresh when hit the 'submit' button.
+        event.preventDefault();
+        // store the city name into the ''.cityName
+        cityName = $('#search-input').val().trim();
+
+        // get the queryURL for the target city
+        let queryGeoURL = buildGeoURL(cityName);
+        // console.log(queryGeoURL);
+        
+        // run the functions with .then() to display the current, forecast weather and create search buttons
+        $.ajax({
+            url: queryGeoURL,
+            method: 'GET'
+        })
+        .then(function (geoData) {
+            getCurrentWeather(geoData);
+            getForecastWeather(geoData);
+            recordSearch(geoData);
+        })
+        .fail(function() {
+            alert('Sorry, the city is not found. Please check your input or try another city!')
+        })
+    })
+    // Add event listener to the history buttons.
+    $('#history').on('click', 'button', function(event){
+        event.preventDefault();
+        // console.log(event.target.innerText);
+        cityName = event.target.innerText.trim();
+        let queryGeoURL = buildGeoURL(cityName);
+
+        $.ajax({
+            url: queryGeoURL,
+            method: 'GET'
+        })
+        .then(function(geoData){
+            getCurrentWeather(geoData);
+            getForecastWeather(geoData);
+        })
+    })
+})
