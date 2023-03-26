@@ -40,7 +40,7 @@ font-family: Arial, sans-serif;
 
 /* Style the header */
 .weather-header {
-background-color: rgba(255, 255, 255, 0.8);
+background-color: rgba(66, 135, 99, 0.8);
 padding: 10px;
 border-radius: 5px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -62,13 +62,13 @@ font-size: 1.5rem;
 .weather-temperature {
 font-size: 3rem;
 font-weight: bold;
-color: #78C850;
+color: #3CB371;
 }
 
 .weather-description {
 font-size: 1.5rem;
 font-weight: bold;
-color: #4682B4; /* Use blue for clear skies */
+color: #98FB98; /* Use blue for clear skies */
 }
 
 .weather-location {
@@ -78,7 +78,7 @@ color: #696969; /* Use gray for text that is not as important */
 
 
 #search-button {
-background-color: #78C850; 
+background-color: #3CB371; 
 border-radius: 5px;
 border: none;
 color: #FFF;
@@ -89,19 +89,19 @@ cursor: pointer;
 }
 
 #search-button:hover {
-background-color: #4682B4; /* Use blue on hover for contrast */
+background-color: #2E8B57; /* Use blue on hover for contrast */
 }
 
 hr {
 margin-top: 2rem;
 margin-bottom: 2rem;
 border: none;
-border-top: 2px solid #78C850; 
+border-top: 2px solid #3CB371; 
 }
 
 .city-buttons {
 display: inline-block;
-background-color: #78C850; 
+background-color: #3CB371; 
 border-radius: 5px;
 border: none;
 color: #FFF;
@@ -114,7 +114,7 @@ cursor: pointer;
 }
 
 .city-buttons:hover {
-background-color: #4682B4; /* Use blue on hover for contrast */
+background-color: #2E8B57 /* Use blue on hover for contrast */
 }
 
 
