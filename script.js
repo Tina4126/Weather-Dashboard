@@ -9,3 +9,43 @@ function buildGeoURL(cityName) {
     geocodingURL += $.param(geocodingParams);
     return geocodingURL;
 }
+// Function to get current weather and display it on the webpage
+function getCurrentWeather(geoData) {
+    // Build the queryURL based on the lon and lat data 
+    let queryURL = 'https://api.openweathermap.org/data/2.5/weather?';
+    let queryParams = {
+    'appid': '6d15a98c4f1e6bf4dce53c48165b4e99'
+    }
+    queryParams.lat = geoData[0].lat;
+    queryParams.lon = geoData[0].lon;
+    queryURL += $.param(queryParams);
+    
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    })
+    .then(function(response){
+        // console.log(response);
+        //Empty the previous weather data
+        $('#today').empty();
+
+        // Create the elements to store current weather info. Units will be converted if needed.
+
+        let currentDate = moment().format('DD/MM/YYYY')
+        let tempData = (response.main.temp - 273.15).toFixed(2);
+        let windData = (response.wind.speed * 2.23694).toFixed(1);
+        let weatherIconId = response.weather[0].icon;
+        let iconURL = 'https://openweathermap.org/img/wn/'+ weatherIconId + '@2x.png';
+
+        const todayTitle = $('<h2>').text(geoData[0].name + ' (' + currentDate + ')');
+        const iconEl = $("<img>").attr('src', iconURL);
+        const todayTemp = $('<p>').text('Temp: ' + tempData + '℃');
+        const todayWind = $('<p>').text('Wind: ' + windData + ' KPH')
+        const todayHumidity = $('<p>').text('Humidity: ' + response.main.humidity + '%');
+
+        todayTitle.append(iconEl);
+        $('#today').append(todayTitle, todayTemp,todayWind, todayHumidity)
+        $('#today').addClass('border border-dark p-1');
+    })
+}
+
